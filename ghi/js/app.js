@@ -1,9 +1,10 @@
-function createCard(name, description, pictureUrl, convertedDate) {
+function createCard(name, description, pictureUrl, convertedDate, locationName) {
     return `
       <div class="card shadow p-3 mb-5 bg-white rounded">
         <img src="${pictureUrl}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">${name}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">${locationName}</h6>
           <p class="card-text">${description}</p>
         </div>
         <div class="card-footer text-muted">
@@ -35,7 +36,8 @@ try {
                 const convertedStartDate = details.conference.starts;
                 const convertedEndDate = details.conference.ends;
                 const convertedDate = convertedStartDate.substring(0,10) + ' - ' + convertedEndDate.substring(0, 10)
-                const html = createCard(title, description, pictureUrl, convertedDate);
+                const locationName = details.conference.location.name;
+                const html = createCard(title, description, pictureUrl, convertedDate, locationName);
                 const column = document.querySelectorAll('.col');
                 if (col === 3){
                     col = 0;
