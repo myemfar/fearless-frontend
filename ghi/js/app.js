@@ -47,16 +47,13 @@ try {
                 const title = details.conference.name;
                 const description = details.conference.description;
                 const pictureUrl = details.conference.location.picture_url;
-                const convertedStartDate = details.conference.start;
-                const convertedEndDate = details.conference.ends;
-                const convertedDate = Date(convertedStartDate).substring(4, 15) + ' - ' + Date(convertedEndDate).substring(4, 15)
+                const convertedStartDate = new Date(details.conference.starts).toLocaleDateString();
+                const convertedEndDate = new Date(details.conference.ends).toLocaleDateString();
+                const convertedDate = convertedStartDate + ' - ' + convertedEndDate;
                 const locationName = details.conference.location.name;
                 const html = createCard(title, description, pictureUrl, convertedDate, locationName);
-                const column = document.querySelectorAll('.col');
-                if (col === 3){
-                    col = 0;
-                };
-                column[col].innerHTML += html;
+                const column = document.getElementById(`col-${col%3}`);
+                column.innerHTML += html;
                 console.log(html);
             }
         }
