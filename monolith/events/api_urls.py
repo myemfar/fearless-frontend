@@ -6,7 +6,7 @@ from .api_views import (
     api_show_conference,
     api_show_location,
 )
-
+from .models import api_list_states
 
 urlpatterns = [
     path("conferences/", api_list_conferences, name="api_list_conferences"),
@@ -15,6 +15,7 @@ urlpatterns = [
         api_show_conference,
         name="api_show_conference",
     ),
+    path("states/", api_list_states, name="api_list_states"),
     path("locations/", api_list_locations, name="api_list_locations"),
     path("locations/<int:pk>/", api_show_location, name="api_show_location"),
 ]

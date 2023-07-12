@@ -47,7 +47,7 @@ try {
                 const title = details.conference.name;
                 const description = details.conference.description;
                 const pictureUrl = details.conference.location.picture_url;
-                const convertedStartDate = details.conference.starts;
+                const convertedStartDate = details.conference.start;
                 const convertedEndDate = details.conference.ends;
                 const convertedDate = Date(convertedStartDate).substring(4, 15) + ' - ' + Date(convertedEndDate).substring(4, 15)
                 const locationName = details.conference.location.name;

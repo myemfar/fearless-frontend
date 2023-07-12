@@ -1,6 +1,28 @@
 from django.db import models
 from django.urls import reverse
+from django.views.decorators.http import require_http_methods
+from django.http import JsonResponse
 
+@require_http_methods(["GET"])
+def api_list_states(request):
+    allstates = State.objects.all().order_by('name')
+    state_list = []
+    for state in allstates:
+        statedict = {}
+        statedict['name'] = state.name
+        statedict['abbreviation'] = state.abbreviation
+        state_list.append(statedict)
+    # Get the states from the database ordered by name
+
+    # Create an empty list named state_list
+
+    # For each state in the states from the database
+        # Create a dictionary that contains the name and
+        # abbreviation for each state
+
+        # Append the dictionary to the list
+
+    return JsonResponse({"states": state_list})
 
 class State(models.Model):
     """
