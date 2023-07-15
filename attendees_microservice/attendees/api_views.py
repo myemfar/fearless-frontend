@@ -14,6 +14,8 @@ class ConferenceVODetailEncoder(ModelEncoder):
 class AttendeeListEncoder(ModelEncoder):
     model = Attendee
     properties = ["name"]
+    def get_extra_data(self, o):
+        return {"conference": o.conference.name}
 
 
 class AttendeeDetailEncoder(ModelEncoder):
@@ -56,7 +58,10 @@ def api_list_attendees(request, conference_vo_id=None):
     }
     """
     if request.method == "GET":
-        attendees = Attendee.objects.filter(conference=conference_vo_id)
+        if conference_vo_id == None:
+            attendees = Attendee.objects.all()
+        else:
+            attendees = Attendee.objects.filter(conference=conference_vo_id)
         return JsonResponse(
             {"attendees": attendees},
             encoder=AttendeeListEncoder,
